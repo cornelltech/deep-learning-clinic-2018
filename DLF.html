@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<title>Deep Learning Frameworks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<style>
+body, html {
+    height: 100%;
+    font-family: FreightSans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    /* line-height: 1.5rem; */
+    /* font-size: 1.2rem; */
+    color: #6c6c6d;
+    letter-spacing: .01px;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("background.jpeg");
+    min-height: 75%;
+}
+.menu {
+    display: none;
+}
+h5 {
+  color: #111111;
+}
+</style>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s2">
+      <a href="#" class="w3-button w3-block w3-black">Outline</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#setup" class="w3-button w3-block w3-black">Setup</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#PT" class="w3-button w3-block w3-black">PyTorch</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#TK" class="w3-button w3-block w3-black">TensorFlow/Keras</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#tools" class="w3-button w3-block w3-black">Tools</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag" style="font-size:30px">Deep Learning Frameworks</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<!-- <div class="w3-sand w3-grayscale w3-large"> -->
+<div class="w3-grayscale">
+
+<!-- About Container -->
+<div class="w3-container" id="description">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Outline</span></h5>
+
+In this lecture, you will learn how to:
+
+    <ul>
+      <li><a href="#setup">Set Up A Working Environment</a></li>
+      <li><a href="#PT">Install PyTorch</a></li>
+      <li><a href="#TK">Install TensorFlow and Keras</a></li>
+      <li><a href="#tools">Work With Useful Tools</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Set up a working environment -->
+<div class="w3-container" id="setup">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Set Up A Working Environment</span></h5>
+
+    The first step before installing any state-of-the-art deep learning frameworks is to set up a proper working environment.
+    <br></br></br>
+    Most popular frameworks are in Python. If you are not familiar with it but have a programming background, read this: <a href=https://learnxinyminutes.com/docs/python/>Learn Python in Y Minutes</a>.
+    <br></br>
+    <h5 class="w3-center">Python</h5>
+    Install Python. In linux/mac based systems, you probably already have one.
+    <br></br>
+    Install pip, the convenient package manager, if needed.
+    <pre class="prettyprint">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>
+    <pre class="prettyprint">python get-pip.py</pre>
+
+    You might want to upgrade it:
+    <pre class="prettyprint">pip install -U pip</pre>
+
+
+    <h5 class="w3-center">Virtualenv</h5>
+    * Based on TensorFlow's <a href="https://www.tensorflow.org/install/pip?lang=python2#1-install-the-python-development-environment-on-your-system">introduction page</a>
+    <br></br>
+    Since there are many versions of Python and its packages, it is highly recommended to have an isolated Python environment: virtualenv is designed for this purpose.
+    <br></br>
+    You can have multiple virtualenvs on your machine, for example one for Python2, one for Python3.
+    <br></br>
+    It is also useful if you don't have root access to the global Python directory of your system (for example you are using a server).
+    <br></br>
+    Install virtualenv:
+    <pre class="prettyprint">pip install virtualenv</pre>
+
+    Create a virtual environment at directory ./venv:
+    <pre class="prettyprint">virtualenv --system-site-packages -p python2.7 ./venv</pre>
+
+    A full python environment is now installed at ./venv. If you take a look inside, you will see directories such as bin/lib.
+    <br></br>
+    To use the virtual environment you just created:
+    <pre class="prettyprint">source ./venv/bin/activate</pre>
+
+    You will see a little prefix (venv) to that the environment is activated.
+    <br></br>
+    Update pip:
+    <pre class="prettyprint">(venv) # pip install -U pip</pre>
+
+    To exit:
+    <pre class="prettyprint">(venv) # deactivate</pre>
+
+    <h5 class="w3-center">Anaconda</h5>
+    <a href="https://www.anaconda.com/">Anaconda</a> is a software package manager that provides a lot of popular tools for data science tasks.
+
+    Download the <a href="https://www.anaconda.com/download/">installer</a> that is suitable for your system.
+
+    For Linux system,
+    <pre class="prettyprint"># bash ./Anaconda2-5.3.0-Linux-x86_64.sh</pre>
+
+    After installation, you might want to create a virtual environment too:
+
+    <pre class="prettyprint">conda create -n venv pip python=2.7</pre>
+
+    <pre class="prettyprint">source activate venv</pre>
+
+    <h5 class="w3-center">Docker</h5>
+
+
+
+    <h5 class="w3-center">IPython</h5>
+    IPython is a powerful interactive shell for Python. You will have prettier printing and flexible commands.
+    <br></br>
+    To install,
+    <pre class="prettyprint">pip install ipython</pre>
+
+    To run,
+    <pre class="prettyprint">ipython</pre>
+
+    <h5 class="w3-center">Jupyter</h5>
+    <a href="">Jupyter</a> notebook is a browser based convenient interactive tool for developing Python applications.
+    <br></br>
+    To install,
+    <pre class="prettyprint">pip install jupyter</pre>
+    To run,
+    <pre class="prettyprint">jupyter notebook</pre>
+
+
+  </div>
+</div>
+
+<!-- Install PyTorch -->
+<div class="w3-container" id="PT">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">PyTorch</span></h5>
+    <a href="https://pytorch.org/">PyTorch</a> is one of the most popular deep learning framework now. It is powerful, flexible, extensible, and easy to use. A nice intro to it can be found <a href="https://blog.algorithmia.com/exploring-the-deep-learning-framework-pytorch/">here</a>.
+    <br></br>
+    <h5 class="w3-center">Installation</h5>
+    Follow the <a href="https://pytorch.org/get-started/locally/">configuration page</a> to pick the installation that is suitable for you. Then run the command at the bottom of that page.
+    <br></br></br>
+    For example, if you chose Stable/Linux/Pip/Python2.7/CUDA-None,
+    <pre class="prettyprint">pip install http://download.pytorch.org/whl/cpu/torch-0.4.1-cp27-cp27mu-linux_x86_64.whl</pre>
+    <pre class="prettyprint">pip install torchvision</pre>
+
+    <h5 class="w3-center">Get Started</h5>
+    To verify the installation, open an IPython shell:
+    <pre class="prettyprint">
+      import torch
+      print(torch.__version__)
+    </pre>
+
+    A bare-bone learning example in PyTorch (from <a href="https://pytorch.org/tutorials/beginner/examples_tensor/two_layer_net_tensor.html#pytorch-tensors">here</a>):
+    <pre class="prettyprint lang-py">
+      import torch
+
+
+      dtype = torch.float
+      device = torch.device("cpu")
+      # device = torch.device("cuda:0") # Uncomment this to run on GPU
+
+      # N is batch size; D_in is input dimension;
+      # H is hidden dimension; D_out is output dimension.
+      N, D_in, H, D_out = 64, 1000, 100, 10
+
+      # Create random input and output data
+      x = torch.randn(N, D_in, device=device, dtype=dtype)
+      y = torch.randn(N, D_out, device=device, dtype=dtype)
+
+      # Randomly initialize weights
+      w1 = torch.randn(D_in, H, device=device, dtype=dtype)
+      w2 = torch.randn(H, D_out, device=device, dtype=dtype)
+
+      learning_rate = 1e-6
+      for t in range(500):
+          # Forward pass: compute predicted y
+          h = x.mm(w1)
+          h_relu = h.clamp(min=0)
+          y_pred = h_relu.mm(w2)
+
+          # Compute and print loss
+          loss = (y_pred - y).pow(2).sum().item()
+          print(t, loss)
+
+          # Backprop to compute gradients of w1 and w2 with respect to loss
+          grad_y_pred = 2.0 * (y_pred - y)
+          grad_w2 = h_relu.t().mm(grad_y_pred)
+          grad_h_relu = grad_y_pred.mm(w2.t())
+          grad_h = grad_h_relu.clone()
+          grad_h[h < 0] = 0
+          grad_w1 = x.t().mm(grad_h)
+
+          # Update weights using gradient descent
+          w1 -= learning_rate * grad_w1
+          w2 -= learning_rate * grad_w2
+    </pre>
+
+    <h5 class="w3-center">A Real Example</h5>
+    <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">Training A Cifar10 Image Classifier</a>
+
+    <h5 class="w3-center">Next Step</h5>
+    <a href="https://pytorch.org/tutorials/">Tutorials</a>
+
+
+  </div>
+</div>
+
+
+<!-- Install TensorFlow -->
+<div class="w3-container" id="TK">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TensorFlow and Keras</span></h5>
+    <a href="https://www.tensorflow.org/">TensorFlow</a> is developed by Google that "allows easy deployment of computation across a variety of platforms (CPUs, GPUs, TPUs), and from desktops to clusters of servers to mobile and edge devices."
+    <br></br>
+    <a href="https://keras.io/">Keras</a> is a high-level interface that people found very useful in using TensorFlow in practice.
+    <h5 class="w3-center">Installation</h5>
+    If you have pip and virtualenv ready, it is easy to install TensorFlow by running this command:
+    <pre class="prettyprint">pip install --upgrade tensorflow</pre>
+
+    There is a built-in Keras inside TensorFlow, but if you want to use it for other backends such as Theano, you can install it too:
+    <pre class="prettyprint">pip install keras</pre>
+
+    <h5 class="w3-center">Get Started</h5>
+    To verify the installation,
+    <pre class="prettyprint">
+      # TensorFlow and tf.keras
+      import tensorflow as tf
+      from tensorflow import keras
+
+      print(tf.__version__)
+    </pre>
+
+    A bare-bone TensorFlow code snippets:
+    <pre class="prettyprint">
+      import tensorflow as tf
+      a = tf.constant(5.0)
+      b = tf.constant(6.0)
+      c = a*b
+      with tf.Session() as sess:
+        print(sess.run(c))
+        print(c.eval())
+    </pre>
+
+
+    <h5 class="w3-center">A Keras Example</h5>
+    <pre class="prettyprint">
+      import tensorflow as tf
+      mnist = tf.keras.datasets.mnist
+
+      (x_train, y_train),(x_test, y_test) = mnist.load_data()
+      x_train, x_test = x_train / 255.0, x_test / 255.0
+
+      model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(512, activation=tf.nn.relu),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+      ])
+      model.compile(optimizer='adam',
+                    loss='sparse_categorical_crossentropy',
+                    metrics=['accuracy'])
+
+      model.fit(x_train, y_train, epochs=5)
+      model.evaluate(x_test, y_test)
+    </pre>
+
+    <h5 class="w3-center">Next Step</h5>
+    <a href="https://www.tensorflow.org/tutorials/">Tutorials</a>
+  </div>
+</div>
+
+
+<!-- Use Popular Tools -->
+<div class="w3-container" id="tools">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Useful Tools</span></h5>
+
+
+    <a href="https://www.jetbrains.com/pycharm/"><strong>PyCharm</strong></a> is a powerful Integrated Development Environment (IDE) for Python.
+
+    <img src="https://www.jetbrains.com/pycharm/img/screenshots/complexLook@2x.jpg" style="max-width:700px"></img>
+    <br></br>
+    <a href="https://matplotlib.org/"><strong>Matplotlib</strong></a> is a plotting library for Python. It is a convenient tool in the interactive shells to quickly visualize your data. You can import it as:
+    <pre class="prettyprint">
+      import matplotlib.pyplot as plt
+      import numpy as np
+      x = np.randn(100)
+      plt.plot(x)
+    </pre>
+
+    <a href="https://www.tensorflow.org/guide/summaries_and_tensorboard"><strong>Tensorboard</strong></a> is part of the TensorFlow tool chain that people found very useful. You can now use it in Pytorch:
+
+    <a href="https://github.com/lanpa/tensorboardX">TensorboardX</a>
+
+    <img src="https://github.com/lanpa/tensorboardX/raw/master/screenshots/Demo.gif" style="max-width:700px"></img>
+
+
+    <a href="https://colab.research.google.com/notebooks/welcome.ipynb"><strong>Google Colab</strong></a> is a cloud based *FREE* Jupyter notebook environment that you can just run on your browser from anywhere. It is very useful to learn basics of DL without too much distractions from system specifics.
+
+
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+</body>
+</html>
