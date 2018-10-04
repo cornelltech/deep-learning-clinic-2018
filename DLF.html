@@ -85,10 +85,10 @@ In this lecture, you will learn how to:
 
     The first step before installing any state-of-the-art deep learning frameworks is to set up a proper working environment.
     <br></br></br>
-    Most popular frameworks are in Python. If you are not familiar with it but have a programming background, read this: <a href=https://learnxinyminutes.com/docs/python/>Learn Python in Y Minutes</a>.
+    Most popular frameworks are in Python. If you are not familiar with it but have a programming background, read this: <a href=https://learnxinyminutes.com/docs/python/>Learn Python in Y Minutes</a>. Otherwise if you want to learn from the beginning, <a href="https://learnpythonthehardway.org/book/">this book</a> has been recommended by many.
     <br></br>
     <h5 class="w3-center">Python</h5>
-    Install Python. In linux/mac based systems, you probably already have one.
+    Install Python. In linux/mac based systems, you should already have one.
     <br></br>
     Install pip, the convenient package manager, if needed.
     <pre class="prettyprint">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>
@@ -141,8 +141,12 @@ In this lecture, you will learn how to:
     <pre class="prettyprint">source activate venv</pre>
 
     <h5 class="w3-center">Docker</h5>
+<!-- ./docker_run.sh -u root -ti --rm ubuntu:18.04 bash -->
+    "With <a href="https://docs.docker.com/get-started/">Docker</a>, you can just grab a portable Python runtime as an image, no installation necessary. Then, your build can include the base Python image right alongside your app code, ensuring that your app, its dependencies, and the runtime, all travel together."
+    <br></br>
+    <img src="https://www.docker.com/sites/default/files/Container%402x.png" class="w3-center" style="max-width:200px"></img>
 
-
+    A good <a href="https://docs.docker.com/get-started/part2/">tutorial</a> to understand the basics.
 
     <h5 class="w3-center">IPython</h5>
     IPython is a powerful interactive shell for Python. You will have prettier printing and flexible commands.
@@ -161,7 +165,7 @@ In this lecture, you will learn how to:
     To run,
     <pre class="prettyprint">jupyter notebook</pre>
 
-
+    A new tab will be opened in your web browser. You can start a new notebook or open the ones you downloaded from the Internet. 
   </div>
 </div>
 
@@ -181,60 +185,61 @@ In this lecture, you will learn how to:
     <h5 class="w3-center">Get Started</h5>
     To verify the installation, open an IPython shell:
     <pre class="prettyprint">
-      import torch
-      print(torch.__version__)
+import torch
+print(torch.__version__)
     </pre>
 
     A bare-bone learning example in PyTorch (from <a href="https://pytorch.org/tutorials/beginner/examples_tensor/two_layer_net_tensor.html#pytorch-tensors">here</a>):
     <pre class="prettyprint lang-py">
-      import torch
+import torch
 
 
-      dtype = torch.float
-      device = torch.device("cpu")
-      # device = torch.device("cuda:0") # Uncomment this to run on GPU
+dtype = torch.float
+device = torch.device("cpu")
+# device = torch.device("cuda:0") # Uncomment this to run on GPU
 
-      # N is batch size; D_in is input dimension;
-      # H is hidden dimension; D_out is output dimension.
-      N, D_in, H, D_out = 64, 1000, 100, 10
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
 
-      # Create random input and output data
-      x = torch.randn(N, D_in, device=device, dtype=dtype)
-      y = torch.randn(N, D_out, device=device, dtype=dtype)
+# Create random input and output data
+x = torch.randn(N, D_in, device=device, dtype=dtype)
+y = torch.randn(N, D_out, device=device, dtype=dtype)
 
-      # Randomly initialize weights
-      w1 = torch.randn(D_in, H, device=device, dtype=dtype)
-      w2 = torch.randn(H, D_out, device=device, dtype=dtype)
+# Randomly initialize weights
+w1 = torch.randn(D_in, H, device=device, dtype=dtype)
+w2 = torch.randn(H, D_out, device=device, dtype=dtype)
 
-      learning_rate = 1e-6
-      for t in range(500):
-          # Forward pass: compute predicted y
-          h = x.mm(w1)
-          h_relu = h.clamp(min=0)
-          y_pred = h_relu.mm(w2)
+learning_rate = 1e-6
+for t in range(500):
+  # Forward pass: compute predicted y
+  h = x.mm(w1)
+  h_relu = h.clamp(min=0)
+  y_pred = h_relu.mm(w2)
 
-          # Compute and print loss
-          loss = (y_pred - y).pow(2).sum().item()
-          print(t, loss)
+  # Compute and print loss
+  loss = (y_pred - y).pow(2).sum().item()
+  print(t, loss)
 
-          # Backprop to compute gradients of w1 and w2 with respect to loss
-          grad_y_pred = 2.0 * (y_pred - y)
-          grad_w2 = h_relu.t().mm(grad_y_pred)
-          grad_h_relu = grad_y_pred.mm(w2.t())
-          grad_h = grad_h_relu.clone()
-          grad_h[h < 0] = 0
-          grad_w1 = x.t().mm(grad_h)
+  # Backprop to compute gradients of w1 and w2 with respect to loss
+  grad_y_pred = 2.0 * (y_pred - y)
+  grad_w2 = h_relu.t().mm(grad_y_pred)
+  grad_h_relu = grad_y_pred.mm(w2.t())
+  grad_h = grad_h_relu.clone()
+  grad_h[h < 0] = 0
+  grad_w1 = x.t().mm(grad_h)
 
-          # Update weights using gradient descent
-          w1 -= learning_rate * grad_w1
-          w2 -= learning_rate * grad_w2
+  # Update weights using gradient descent
+  w1 -= learning_rate * grad_w1
+  w2 -= learning_rate * grad_w2
     </pre>
 
     <h5 class="w3-center">A Real Example</h5>
     <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">Training A Cifar10 Image Classifier</a>
 
     <h5 class="w3-center">Next Step</h5>
-    <a href="https://pytorch.org/tutorials/">Tutorials</a>
+    <a href="https://pytorch.org/tutorials/">Tutorials</a> and
+    <a href="https://github.com/pytorch/examples">Github Examples</a>
 
 
   </div>
@@ -258,45 +263,45 @@ In this lecture, you will learn how to:
     <h5 class="w3-center">Get Started</h5>
     To verify the installation,
     <pre class="prettyprint">
-      # TensorFlow and tf.keras
-      import tensorflow as tf
-      from tensorflow import keras
+# TensorFlow and tf.keras
+import tensorflow as tf
+from tensorflow import keras
 
-      print(tf.__version__)
+print(tf.__version__)
     </pre>
 
     A bare-bone TensorFlow code snippets:
     <pre class="prettyprint">
-      import tensorflow as tf
-      a = tf.constant(5.0)
-      b = tf.constant(6.0)
-      c = a*b
-      with tf.Session() as sess:
-        print(sess.run(c))
-        print(c.eval())
+import tensorflow as tf
+a = tf.constant(5.0)
+b = tf.constant(6.0)
+c = a*b
+with tf.Session() as sess:
+  print(sess.run(c))
+  print(c.eval())
     </pre>
 
 
     <h5 class="w3-center">A Keras Example</h5>
     <pre class="prettyprint">
-      import tensorflow as tf
-      mnist = tf.keras.datasets.mnist
+import tensorflow as tf
+mnist = tf.keras.datasets.mnist
 
-      (x_train, y_train),(x_test, y_test) = mnist.load_data()
-      x_train, x_test = x_train / 255.0, x_test / 255.0
+(x_train, y_train),(x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
 
-      model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(512, activation=tf.nn.relu),
-        tf.keras.layers.Dropout(0.2),
-        tf.keras.layers.Dense(10, activation=tf.nn.softmax)
-      ])
-      model.compile(optimizer='adam',
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Flatten(input_shape=(28,28)),
+  tf.keras.layers.Dense(512, activation=tf.nn.relu),
+  tf.keras.layers.Dropout(0.2),
+  tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+])
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
 
-      model.fit(x_train, y_train, epochs=5)
-      model.evaluate(x_test, y_test)
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test, y_test)
     </pre>
 
     <h5 class="w3-center">Next Step</h5>
@@ -317,10 +322,10 @@ In this lecture, you will learn how to:
     <br></br>
     <a href="https://matplotlib.org/"><strong>Matplotlib</strong></a> is a plotting library for Python. It is a convenient tool in the interactive shells to quickly visualize your data. You can import it as:
     <pre class="prettyprint">
-      import matplotlib.pyplot as plt
-      import numpy as np
-      x = np.randn(100)
-      plt.plot(x)
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.randn(100)
+plt.plot(x)
     </pre>
 
     <a href="https://www.tensorflow.org/guide/summaries_and_tensorboard"><strong>Tensorboard</strong></a> is part of the TensorFlow tool chain that people found very useful. You can now use it in Pytorch:
